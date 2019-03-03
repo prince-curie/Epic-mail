@@ -1,0 +1,33 @@
+{
+  "name": "epic-mail",
+  "version": "1.0.0",
+  "description": "A mailing platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prince-curie/Epic-mail.git"
+  },
+  "author": "Prince-Curie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prince-curie/Epic-mail/issues"
+  },
+  "homepage": "https://github.com/prince-curie/Epic-mail#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
