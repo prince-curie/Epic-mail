@@ -1,0 +1,19 @@
+{
+  "name": "epic-mail",
+  "version": "1.0.0",
+  "description": "A mailing platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prince-curie/Epic-mail.git"
+  },
+  "author": "Prince-Curie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prince-curie/Epic-mail/issues"
+  },
+  "homepage": "https://github.com/prince-curie/Epic-mail#readme"
+}
