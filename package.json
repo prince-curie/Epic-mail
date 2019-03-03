@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/prince-curie/Epic-mail/issues"
   },
-  "homepage": "https://github.com/prince-curie/Epic-mail#readme"
+  "homepage": "https://github.com/prince-curie/Epic-mail#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
