@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>epicmail | mail</title>
-  <link rel="stylesheet" href="mail.css">
+  <title>epicmail | Admin </title>
+  <link rel="stylesheet" href="admin.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body class="body__container">
@@ -32,39 +32,106 @@
   </header>
   <aside class="aside__container">
     <button class="cancel-side-bar aside__button"> &times; </button>
-    <button class="aside__button" id="inbox-mail-button">Inbox</button>
-    <button class="aside__button" id="sent-mail-button">Sent mail</button>
-    <button class="aside__button" id="draft-button">Draft</button>
+    <form action="" method="post" class="aside__form" id="aside__form-creategroup">
+      <span>Create group</span>
+      <label for="group name"> Group name</label>
+      <input type="text" required name="" id="">
+      <input type="submit" value="Submit">
+    </form>
+    <form action="" method="post" id="aside__form-selectmembers" class="aside__form">
+        <span>Select group members </span>
+        <label for="Select members"> Select members</label>
+        <div>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+          <input type="checkbox"  name="" id="" value="hello"> Hello <br>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+          <button class="aside__button" id="inbox-mail-button">Inbox</button>
+          <button class="aside__button" id="sent-mail-button">Sent mail</button>
+          <button class="aside__button" id="draft-button">Draft</button>
   </aside>
   <main class="main__container">
     <section class="section__inbox">
       <span class="section__header">
-        Inbox
+          Inbox
       </span>
       <div class="inbox-message">
-        <span class="inbox-sender">Sender</span>
-        <span class="inbox-date">date</span>
-        <span class="inbox-subject">Subject</span>
+          <span class="inbox-sender">Sender</span>
+          <span class="inbox-date">date</span>
+          <span class="inbox-subject">Subject</span>
       </div>
       <div class="inbox-message">
-        <span class="inbox-sender">Sender</span>
-        <span class="inbox-date">date</span>
-        <span class="inbox-subject">Subject</span>
+          <span class="inbox-sender">Sender</span>
+          <span class="inbox-date">date</span>
+          <span class="inbox-subject">Subject</span>
       </div>
       <div class="inbox-message">
-        <span class="inbox-sender">Sender</span>
-        <span class="inbox-date">date</span>
-        <span class="inbox-subject">Subject</span>
+          <span class="inbox-sender">Sender</span>
+          <span class="inbox-date">date</span>
+          <span class="inbox-subject">Subject</span>
       </div>
       <div class="inbox-message">
-        <span class="inbox-sender">Sender</span>
-        <span class="inbox-date">date</span>
-        <span class="inbox-subject">Subject</span>
+          <span class="inbox-sender">Sender</span>
+          <span class="inbox-date">date</span>
+          <span class="inbox-subject">Subject</span>
       </div>
       <div class="inbox-message">
-        <span class="inbox-sender">Sender</span>
-        <span class="inbox-date">date</span>
-        <span class="inbox-subject">Subject</span>
+          <span class="inbox-sender">Sender</span>
+          <span class="inbox-date">date</span>
+          <span class="inbox-subject">Subject</span>
       </div>
     </section>    
     <section class="section__readmail">
@@ -162,5 +229,5 @@
     EPIC MAIL &copy; 2019
   </footer>
 </body>
-<script src="mail.js"></script>
+<script src="admin.js"></script>
 </html>
