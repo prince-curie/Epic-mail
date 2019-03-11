@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/users', userRoutes);
 
+/* istanbul ignore next */
 const port = 3000 || process.env.PORT;
 
 app.listen(port, () => console.log('Jehovah is my strength'));

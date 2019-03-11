@@ -1,9 +1,6 @@
 import userServices from '../services/user.services';
-import Userauth from '../auth/user.auth'
 
-
-const {fetchAllUsersDB } = userServices;
-
+const {fetchAllUsersDB, addUserDB } = userServices;
 
 const userController = {
   fetchAllUser(req,res) {
@@ -12,9 +9,13 @@ const userController = {
       data: fetchAllUsersDB()
     }).status(200);
   },
-  addUser(req, res) {
+  signUp(req, res) {
     const newUser = req.body; 
-    return Userauth(newUser, res);
+    const createdUser = addUserDB(newUser);
+      return res.json({
+        status: 'success',
+        data: createdUser
+      }).status(201);
   }
 }
 
