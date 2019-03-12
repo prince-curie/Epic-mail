@@ -9,13 +9,19 @@
 }
 .header__container {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   padding: 0 .5rem;
   height: 15vh;
   align-items: center;
   background-color: rgba(1, 57, 92, 1);
   color: rgba(255,255,255,1);
+  align-content: space-between;
   justify-content: space-between;
 }
+.header__container:first-child {
+  padding: 0.5rem;
+} 
 .header__div {
   display: flex;
 }
@@ -27,6 +33,7 @@
 }
 .h1__span {
   align-self: center;
+  margin-left: .2rem;
 }
 .header__button {
   color: rgba(255,255,255,1);
@@ -124,6 +131,7 @@
 .main__container {
   min-height: 75vh;
   box-sizing: border-box;
+  padding: 1rem;
 }
 .section__header {
   padding: 0.8rem;
@@ -146,6 +154,9 @@
 }
 
 /*Styles for the compose message section starts here*/
+.compose-mail {
+    display: none;
+}
 .input-address {
   display: block;
   background-color: white;
@@ -174,7 +185,7 @@
 }
 label {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 /*Styles for the compose message section ends here*/
 .section__readmail, .section__readsentmail, .section__readdraft {
@@ -260,4 +271,45 @@ label {
   align-items: center;
   background-color: rgba(1, 57, 92, 1);
   color: rgba(255,255,255,1);
+}
+@media(min-width:300px) {
+  
+.header__container {
+  display: flex;
+  padding: 0 .5rem;
+  height: 15vh;
+  align-items: center;
+  background-color: rgba(1, 57, 92, 1);
+  color: rgba(255,255,255,1);
+  justify-content: space-between;
+}
+.header__div {
+  display: flex;
+}
+.header__h1 > a {
+  display: flex;
+  color: rgba(255,255,255,1);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+.h1__span {
+  align-self: center;
+  margin-left: .2rem;
+}
+.header__button {
+  color: rgba(255,255,255,1);
+  background-color: inherit;
+  border: none;
+  font-size: 1.3rem;
+  display: flex;
+  outline: none;
+}
+.header__span {
+  align-self: center;
+}
+.header__span > a {
+  color: rgba(255,255,255,1);
+  text-decoration: none;
+  font-size: 1.3rem;
+}
 }
