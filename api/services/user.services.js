@@ -1,13 +1,10 @@
 import database from '../database/database';
 import User from '../models/user.model';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import env from 'dotenv'
 
 const {users} = database;
-const envconfig = env.config();
 
-const userService =   {
+const userService = {
   fetchAllUsersDB () {
     const allUsers = users.map((user) => {
       const newUser = new User();
@@ -23,26 +20,23 @@ const userService =   {
   addUserDB(user, res) {
     const lastId = users[users.length - 1].id;
     const newId = lastId + 1;
-    //copied from jwt documentation and holland burke article on env variables
-    const token = jwt.sign({
-      email: user.email
-    }, 
-    process.env.JWT_KEY,
-    {
-      expiresIn: '3hr'
-    });
     bcrypt.hash(user.password, 10, (err, hash) => {
       if (err) {
         return res.status(500).json({
           status: 'fail',
           data: err
         })
-      } 
+      } else {
         user.id = newId;
         user.password = hash;
+        console.log(user.password);
         users.push(user);
+      }
     });
-    return token;
+    return res.status(200).json({
+      status: 'success',
+      data: user
+    });
   },  
   getUser(id) {
     users.find( user => user.id == parseInt(id) );

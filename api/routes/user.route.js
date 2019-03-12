@@ -2,16 +2,12 @@ import {Router} from 'express';
 
 import userController from '../controllers/user.controller';
 
-import userAuth from '../auth/user.auth';
-
-const {signUpAuth} = userAuth;
-
-const {fetchAllUser, signUp} = userController;
+const {fetchAllUser, addUser} = userController;
 
 const router = Router();
 
 router.get('/', fetchAllUser);
 
-router.post('/signup', signUpAuth, signUp );
+router.post('/', addUser );
 
 export default router;
