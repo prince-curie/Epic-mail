@@ -1,6 +1,6 @@
 import userServices from '../services/user.services';
 
-const { fetchAllUsersDB, addUserDB } = userServices;
+const { fetchAllUsersDB } = userServices;
 
 export default {
   fetchAllUser(req, res) {

@@ -12,8 +12,6 @@ const { fetchAllUser, signUp } = userController;
 
 const { addUserDB } = userService;
 
-// const { addUserDB } = userService;
-
 const router = Router();
 
 router.get('/', fetchAllUser);

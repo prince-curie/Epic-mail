@@ -5,7 +5,9 @@ import User from '../models/user.model';
 import database from '../database/database';
 
 const { users } = database;
+// eslint-disable-next-line no-unused-vars
 const env = dotenv.config();
+
 
 const userService = {
   fetchAllUsersDB() {
@@ -52,11 +54,6 @@ const userService = {
       data: token,
     }).status(201);
   },
-  /*
-  getUser(id) {
-    users.find(user => user.id === parseInt(id));
-  },
-  */
 };
 
 export default userService;

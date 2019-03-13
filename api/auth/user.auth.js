@@ -1,8 +1,6 @@
 import Joi from 'joi';
-// import userServices from '../services/user.services';
 import database from '../database/database';
 
-// const {addUserDB} = userServices;
 const { users } = database;
 
 const userAuth = {
