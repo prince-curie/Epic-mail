@@ -27,7 +27,6 @@ const userService = {
     const newId = lastId + 1;
     // eslint-disable-next-line no-param-reassign
     req.body.id = newId;
-    // copied from jwt documentation and holland burke article on env variables
     const token = jwt.sign({
       email: req.body.email,
     },
