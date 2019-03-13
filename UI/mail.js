@@ -20,8 +20,9 @@ const sentMessages = document.querySelectorAll('.sent-message');
 const readSentMail = document.querySelector('.section__readsentmail');
 const readDraft = document.querySelector('.section__readdraft');
 const editDraftForm = document.querySelector('.draft-edit');
+const composeMail = document.querySelector('.compose-mail');
 
-
+const sendButton = document.createElement('button');
 const closeButton = document.createElement('button');
 const saveButton = document.createElement('button');
 const editButton = document.createElement('button');
@@ -39,34 +40,47 @@ const closeSentMailButton = document.createElement('button');
 const closeDraftButton = document.createElement('button');
     
 let openSideBar = true;
+const controlBoxes = (i = false, sen = false, dra = false) => {
+	this.inbox = i;
+	this.sentmail = sen;
+	this.draf = dra;
+}
+controlBoxes(true, false, false);
+
+const displayMail = (i = 'none', sen = 'none', dra = 'none') => {
+	sectionInbox.style.display = i;
+	sectionSentMessages.style.display = sen;
+	sectionDraftMail.style.display = dra;
+}
+displayMail('grid', 'none', 'none');
 
 removeInboxMessage = () => {
-    sectionInbox.style.display = 'none';
+  sectionInbox.style.display = 'none';
 }
 addInboxMessage = () => {
-    sectionInbox.style.display = 'block';
+  sectionInbox.style.display = 'block';
 }
 addSentMessage = () => {
-    sectionSentMessages.style.display = 'grid';
+  sectionSentMessages.style.display = 'grid';
 }
 addDraft = () => {
-    sectionDraftMail.style.display = 'grid';
+  sectionDraftMail.style.display = 'grid';
 }
 removeInboxHeader = () => {
-    Array.from(headerDiv, div => {
-        div.remove();
-    })
+  Array.from(headerDiv, div => {
+    div.remove();
+  })
 }
 addInboxHeader = () => {
-    Array.from(headerDiv, div => {
-        header.append(div);
-    })
+  Array.from(headerDiv, div => {
+    header.append(div);
+  })
 }
 
 removeWriteHeader = () => {
-    header.removeChild(closeButton);
-    header.removeChild(saveButton);
-    header.removeChild(sendButton);
+  header.removeChild(closeButton);
+  header.removeChild(saveButton);
+  header.removeChild(sendButton);
 }
 addWriteHeader = () => {
     header.appendChild(closeButton);
@@ -74,185 +88,169 @@ addWriteHeader = () => {
     header.appendChild(sendButton);
 }
 //to enable sending message to people. 
-//The function creates a box in your main 
+//The function displays a box in your main 
 //where you can write mails, send it or save
 //it as draft
 composeBox = () => {
-    //Removing elements from the head
-    removeInboxMessage();
-    removeInboxHeader();
-    //adding text values to elements
-    receiverLabel.textContent = 'To:'; 
-    subjectLabel.textContent = 'Subject:'; 
-    messageLabel.textContent = 'Message:'; 
-    closeButton.textContent = 'Close';
-    sendButton.textContent = 'Send';
-    saveButton.textContent = 'Save';
-    //adding text values ends here
+  //Removing elements from the head
+  removeInboxMessage();
+  removeInboxHeader();
+  sectionSentMessages.style.display = 'none';
+	sectionDraftMail.style.display = 'none';
+  //adding text values to elements
+  closeButton.textContent = 'Close';
+  sendButton.textContent = 'Send';
+  saveButton.textContent = 'Save';
+  //adding text values ends here
 
-    //adding attributes to elements
-    receiverAddress.classList.add('input-address');
-    subject.classList.add('input-address');
-    outGoingMessage.classList.add('message-box');
-    closeButton.classList.add('header__button', 'header__closeButton');
-    sendButton.setAttribute('class', 'header__button');
-    saveButton.setAttribute('class', 'header__button');
-    //stopped adding attributes
+  //adding attributes to elements
+  closeButton.classList.add('header__button', 'header__closeButton');
+  sendButton.setAttribute('class', 'header__button');
+  saveButton.setAttribute('class', 'header__button');
+  //stopped adding attributes
 
-    //creates the box header
-    addWriteHeader(); 
-    main.append(receiverLabel);
-    main.appendChild(receiverAddress);
-    main.append(subjectLabel);
-    main.appendChild(subject);
-    main.append(messageLabel);
-    main.appendChild(outGoingMessage);
+  //creates the box header
+  addWriteHeader(); 
+  composeMail.style.display = 'block';  
 
-    //calls the button from the dom after it is created 
-    //and adds event listeners to them
-    const closeMail = document.querySelector('.header__closeButton')
-    closeMail.addEventListener('click', closeWriteBox, false);
+  //calls the button from the dom after it is created 
+  //and adds event listeners to them
+  const closeMail = document.querySelector('.header__closeButton')
+  closeMail.addEventListener('click', closeWriteBox, false);
 }
 
 closeWriteBox = () => {
-    removeWriteHeader();
-    main.removeChild(receiverAddress);
-    main.removeChild(subject);
-    main.removeChild(outGoingMessage);
-    main.removeChild(receiverLabel);
-    main.removeChild(subjectLabel);
-    main.removeChild(messageLabel);
-    addInboxHeader();
-    addInboxMessage();
+  removeWriteHeader();
+  composeMail.style.display = 'none';
+	if(draf) draft();
+	if(inbox) inboxMail();
+	if(sentmail) sentMail();
+  addInboxHeader();
 }   
 addReadMailHeader = () => {
-    deleteButton.textContent = 'Delete';
-    replyButton.textContent = 'Reply';
-    deleteButton.classList.add('header__button');
-    replyButton.classList.add('header__button');
-    header.append(closeInmailButton);
-    header.append(deleteButton);
-    header.append(replyButton);
+  deleteButton.textContent = 'Delete';
+  replyButton.textContent = 'Reply';
+  deleteButton.classList.add('header__button');
+  replyButton.classList.add('header__button');
+  header.append(closeInmailButton);
+  header.append(deleteButton);
+  header.append(replyButton);
 }
 addSentMailHeader = () => {
-    deleteButton.textContent = 'Delete';
-    retractButton.textContent = 'Retract';
-    deleteButton.classList.add('header__button');
-    retractButton.classList.add('header__button');
-    header.append(closeSentMailButton);
-    header.append(deleteButton);
-    header.append(retractButton);
+  deleteButton.textContent = 'Delete';
+  retractButton.textContent = 'Retract';
+  deleteButton.classList.add('header__button');
+  retractButton.classList.add('header__button');
+  header.append(closeSentMailButton);
+  header.append(deleteButton);
+  header.append(retractButton);
 }
 addDraftHeader = () => {
-    deleteButton.textContent = 'Delete';
-    editButton.textContent = 'Edit';
-    deleteButton.classList.add('header__button');
-    editButton.classList.add('header__button');
-    header.append(closeDraftButton);
-    header.append(deleteButton);
-    header.append(editButton);
+  deleteButton.textContent = 'Delete';
+  editButton.textContent = 'Edit';
+  deleteButton.classList.add('header__button');
+  editButton.classList.add('header__button');
+  header.append(closeDraftButton);
+  header.append(deleteButton);
+  header.append(editButton);
 }
 closeReadMail = () => {
-    header.removeChild(closeInmailButton);
-    header.removeChild(deleteButton);
-    header.removeChild(replyButton);
-    addInboxHeader();
-    addInboxMessage();
-    sendReply.style.display = 'none';
-    readMailSection.style.display = 'none';
-    return;
+  header.removeChild(closeInmailButton);
+  header.removeChild(deleteButton);
+  header.removeChild(replyButton);
+  addInboxHeader();
+  addInboxMessage();
+  sendReply.style.display = 'none';
+  readMailSection.style.display = 'none';
+  return;
 }
 closeSentMail = () => {
-    header.removeChild(closeSentMailButton);
-    header.removeChild(deleteButton);
-    header.removeChild(retractButton);
-    addInboxHeader();
-    addSentMessage();
-    readSentMail.style.display = 'none';
-    return;
+  header.removeChild(closeSentMailButton);
+  header.removeChild(deleteButton);
+  header.removeChild(retractButton);
+  addInboxHeader();
+  addSentMessage();
+  readSentMail.style.display = 'none';
+  return;
 }
 closeDraft = () => {
-    header.removeChild(closeDraftButton);
-    header.removeChild(deleteButton);
-    header.removeChild(editButton);
-    addInboxHeader();
-    addDraft();
-    readDraft.style.display = 'none';
-    return;
+  header.removeChild(closeDraftButton);
+  header.removeChild(deleteButton);
+  header.removeChild(editButton);
+  addInboxHeader();
+  addDraft();
+  readDraft.style.display = 'none';
+  return;
 }
 editDraft = () => {
-    editDraftForm.style.display = 'grid';
+  editDraftForm.style.display = 'grid';
 }
 
 replyMail = () => {
-    return sendReply.style.display = 'grid';
+  return sendReply.style.display = 'grid';
 }
 Array.from(inboxMessage, message => {
-    message.addEventListener('click',() => {
-        if (openSideBar) {
-            removeInboxMessage();
-            removeInboxHeader();
-            addReadMailHeader();
-            readMailSection.style.display = 'grid';
-            closeInmailButton.textContent = 'Close';
-            closeInmailButton.classList.add('header__button', 'header__closeButton');
-            closeInmailButton.addEventListener('click', closeReadMail, false);
-            replyButton.addEventListener('click', replyMail, false);
-        }
-    });
+  message.addEventListener('click',() => {
+    if(openSideBar) {
+      removeInboxMessage();
+      removeInboxHeader();
+      addReadMailHeader();
+      readMailSection.style.display = 'grid';
+      closeInmailButton.textContent = 'Close';
+      closeInmailButton.classList.add('header__button', 'header__closeButton');
+      closeInmailButton.addEventListener('click', closeReadMail, false);
+      replyButton.addEventListener('click', replyMail, false);
+    }
+  });
 });
 Array.from(sentMessages, sent => {
-    sent.addEventListener('click',() => {
-        if (openSideBar) {
-            sectionSentMessages.style.display = 'none';
-            removeInboxHeader();
-            addSentMailHeader();
-            readSentMail.style.display = 'grid';
-            closeSentMailButton.textContent = 'Close';
-            closeSentMailButton.classList.add('header__button', 'header__closeButton');
-            closeSentMailButton.addEventListener('click', closeSentMail, false);
-        }
-    });
+  sent.addEventListener('click',() => {
+    if(openSideBar) {
+      sectionSentMessages.style.display = 'none';
+      removeInboxHeader();
+      addSentMailHeader();
+      readSentMail.style.display = 'grid';
+      closeSentMailButton.textContent = 'Close';
+      closeSentMailButton.classList.add('header__button', 'header__closeButton');
+      closeSentMailButton.addEventListener('click', closeSentMail, false);
+      }
+  });
 });
 Array.from(drafts, draft => {
-    draft.addEventListener('click',() => {
-        if (openSideBar) {
-            sectionDraftMail.style.display = 'none';;
-            removeInboxHeader();
-            addDraftHeader();
-            readDraft.style.display = 'grid';
-            closeDraftButton.textContent = 'Close';
-            closeDraftButton.classList.add('header__button', 'header__closeButton');
-            closeDraftButton.addEventListener('click', closeDraft, false);
-            editButton.addEventListener('click',editDraft, false);
-        }
-    });
+  draft.addEventListener('click',() => {
+    if(openSideBar) {
+      sectionDraftMail.style.display = 'none';
+      removeInboxHeader();
+      addDraftHeader();
+      readDraft.style.display = 'grid';
+      closeDraftButton.textContent = 'Close';
+      closeDraftButton.classList.add('header__button', 'header__closeButton');
+      closeDraftButton.addEventListener('click', closeDraft, false);
+      editButton.addEventListener('click',editDraft, false);
+      }
+  });
 });
 
 openAsideTab = () => {
-    asideContainer.style.width = '250px';
-    return openSideBar = false;
+  asideContainer.style.width = '250px';
+  return openSideBar = false;
 } 
 closeAsideTab = () => {
-    asideContainer.style.width = '0';
-    return openSideBar = true;
+  asideContainer.style.width = '0';
+  return openSideBar = true;
 }
 sentMail = () => {
-    sectionSentMessages.style.display = 'grid';
-    sectionInbox.style.display = 'none';
-    sectionDraftMail.style.display = 'none';
+  controlBoxes(false, true, false);
+	displayMail('none', 'grid', 'none');
 }
 draft = () => {
-    sectionDraftMail.style.display = 'grid';
-    sectionInbox.style.display = 'none';
-    sectionSentMessages.style.display = 'none';
+  controlBoxes(false, false, true);
+  displayMail('none', 'none', 'grid');
 }
 inboxMail = () => {
-    sectionSentMessages.style.display = 'none';
-    sectionInbox.style.display = 'grid';
-    sectionDraftMail.style.display = 'none';
+  controlBoxes(true, false, false);
+  displayMail('grid', 'none', 'none');
 }
-
 writeMail.addEventListener('click', composeBox, false);
 asideToggle.addEventListener('click', openAsideTab, false);
 cancelSideTab.addEventListener('click', closeAsideTab, false);
