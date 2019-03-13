@@ -35,7 +35,7 @@ describe('GET users', () => {
 });
 
 const request = {
-  email: 'ah@d.c',
+  email: 'a@d.c',
   firstName: 'e go',
   lastName: 'be',
   password: 'see baby',
@@ -63,7 +63,27 @@ describe('Create user', () => {
       .send(request)
       .end((err, res) => {
         res.should.have.status(200);
-        //res
+        res.should.be.an('object');
+        res.body.should.have.property('data');
+        res.body.data.should.be.a('string');
+        done(err);
+      });
+  });
+  it('The request should have data', (done) => {
+    chai.request(app)
+      .post('/api/v1/users/signup')
+      .send(request)
+      .end((err, res) => {
+        res.body.should.have.property('data');
+        done(err);
+      });
+  });
+  it('The request should return a string', (done) => {
+    chai.request(app)
+      .post('/api/v1/users/signup')
+      .send(request)
+      .end((err, res) => {
+        res.body.data.should.be.a('string');
         done(err);
       });
   });

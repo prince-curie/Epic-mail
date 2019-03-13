@@ -34,30 +34,25 @@ const userService = {
     });
     bcrypt.hash(req.body.password, 10, (err, hash) => {
       if (err) {
-        this.error = err.json({
+        const error = err.json({
           status: 'fail',
           data: 'internal server error',
-        });
+        }).status(500);
+        return error;
       }
       if (hash) {
       // eslint-disable-next-line no-param-reassign
         req.body.password = hash;
         users.push(req.body);
       }
-      return this.error;
     });
-    this.result = res.json({
+    res.json({
       status: 'success',
       data: token,
-    }).status(201);
+    });
 
     next();
   },
-  /*
-  getUser(id) {
-    users.find(user => user.id === parseInt(id));
-  },
-  */
 };
 
 export default userService;
