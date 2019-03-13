@@ -1,8 +1,8 @@
 import userServices from '../services/user.services';
 
-const { fetchAllUsersDB } = userServices;
+const { fetchAllUsersDB, addUserDB } = userServices;
 
-export default {
+const userController = {
   fetchAllUser(req, res) {
     return res.json({
       status: 'success',
@@ -10,11 +10,13 @@ export default {
     }).status(200);
   },
   signUp(req, res) {
-    try {
-      return res;
-    } catch (error) {
-      /* istanbul ignore next */
-      return error;
-    }
+    const newUser = req.body;
+    const createdUser = addUserDB(newUser);
+    return res.json({
+      status: 'success',
+      data: createdUser,
+    }).status(201);
   },
 };
+
+export default userController;
