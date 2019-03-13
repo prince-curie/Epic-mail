@@ -1,6 +1,6 @@
 import userServices from '../services/user.services';
 
-const { fetchAllUsersDB, addUserDB } = userServices;
+const { fetchAllUsersDB } = userServices;
 
 export default {
   fetchAllUser(req, res) {
@@ -9,12 +9,10 @@ export default {
       data: fetchAllUsersDB(),
     }).status(200);
   },
-  signUp(req, res) {
-    try {
-      return res;
-    } catch (error) {
-      /* istanbul ignore next */
-      return error;
-    }
-  },
+  signUp(err, req, res) {
+    // try {
+    return res || err;
+  }, // catch (err) {
+  // return err;
+  // }
 };

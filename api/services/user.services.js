@@ -25,7 +25,6 @@ const userService = {
     const newId = lastId + 1;
     // eslint-disable-next-line no-param-reassign
     req.body.id = newId;
-    // copied from jwt documentation and holland burke article on env variables
     const token = jwt.sign({
       email: req.body.email,
     },
@@ -35,22 +34,24 @@ const userService = {
     });
     bcrypt.hash(req.body.password, 10, (err, hash) => {
       if (err) {
-        const error = res.status(500).json({
+        this.error = err.json({
           status: 'fail',
           data: 'internal server error',
         });
-        next(error);
       }
       if (hash) {
       // eslint-disable-next-line no-param-reassign
         req.body.password = hash;
         users.push(req.body);
       }
+      return this.error;
     });
-    return res.json({
+    this.result = res.json({
       status: 'success',
       data: token,
     }).status(201);
+
+    next();
   },
   /*
   getUser(id) {
