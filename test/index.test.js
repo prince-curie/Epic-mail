@@ -5,14 +5,14 @@ import app from '../index';
 chai.should();
 chai.use(chaiHttp);
 
-describe('Test server',() =>{
+describe('Test server', () => {
   it('The server should return a status code of 200', (done) => {
-   chai.request(app)
-     .get('/')
-     .end((err, res) => {
+    chai.request(app)
+      .get('/')
+      .end((err, res) => {
         res.should.have.status(200);
         done(err);
-     })
+      });
   });
   it('The server shold return a object', (done) => {
     chai.request(app)
@@ -30,4 +30,4 @@ describe('Test server',() =>{
         done(err);
       });
   });
-})
+});

@@ -5,9 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  return res.send({data: 'Jehovah thank you'});
-});
+app.get('/', (req, res) => res.send({ data: 'Jehovah thank you' }));
 
 app.use('/api/v1/users', userRoutes);
 

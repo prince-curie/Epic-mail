@@ -1,14 +1,16 @@
-import database from '../database/database';
-import User from '../models/user.model';
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import env from 'dotenv'
+import User from '../models/user.model';
+import database from '../database/database';
 
-const {users} = database;
-const envconfig = env.config();
+const { users } = database;
+// eslint-disable-next-line no-unused-vars
+const env = dotenv.config();
 
-const userService =   {
-  fetchAllUsersDB () {
+
+const userService = {
+  fetchAllUsersDB() {
     const allUsers = users.map((user) => {
       const newUser = new User();
       newUser.id = user.id;
@@ -20,33 +22,37 @@ const userService =   {
     });
     return allUsers;
   },
-  addUserDB(user, res) {
+  addUserDB(req, res, next) {
     const lastId = users[users.length - 1].id;
     const newId = lastId + 1;
-    //copied from jwt documentation and holland burke article on env variables
+    // eslint-disable-next-line no-param-reassign
+    req.body.id = newId;
     const token = jwt.sign({
-      email: user.email
-    }, 
+      email: req.body.email,
+    },
     process.env.JWT_KEY,
     {
-      expiresIn: '3hr'
+      expiresIn: '3hr',
     });
-    bcrypt.hash(user.password, 10, (err, hash) => {
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
       if (err) {
-        return res.status(500).json({
+        const error = res.status(500).json({
           status: 'fail',
-          data: err
-        })
-      } 
-        user.id = newId;
-        user.password = hash;
-        users.push(user);
+          data: 'internal server error',
+        });
+        next(error);
+      }
+      if (hash) {
+      // eslint-disable-next-line no-param-reassign
+        req.body.password = hash;
+        users.push(req.body);
+      }
     });
-    return token;
-  },  
-  getUser(id) {
-    users.find( user => user.id == parseInt(id) );
-  }
-}
+    return res.json({
+      status: 'success',
+      data: token,
+    }).status(201);
+  },
+};
 
 export default userService;
