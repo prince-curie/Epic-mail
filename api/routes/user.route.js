@@ -6,16 +6,19 @@ import userService from '../services/user.services';
 
 import userAuth from '../auth/user.auth';
 
-const { signUpAuth } = userAuth;
 
-const { fetchAllUser, signUp } = userController;
+const { signUpAuth, signInAuth } = userAuth;
 
-const { addUserDB } = userService;
+const { fetchAllUser, signUp, signIn } = userController;
+
+const { addUserDB, signInDB } = userService;
 
 const router = Router();
 
 router.get('/', fetchAllUser);
 
 router.post('/signup', signUpAuth, addUserDB, signUp);
+
+router.post('/signin', signInAuth, signInDB, signIn);
 
 export default router;

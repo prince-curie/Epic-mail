@@ -12,4 +12,7 @@ export default {
   signUp(err, req, res) {
     return res;
   },
+  signIn(req, res) {
+    return res;
+  },
 };

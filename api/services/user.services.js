@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model';
 import database from '../database/database';
+import userAuth from '../auth/user.auth';
 
 const { users } = database;
 const env = dotenv.config();
@@ -43,6 +44,19 @@ const userService = {
     });
     next();
   },
+  signInDB(req, res, next) {
+    const token = jwt.sign({
+      email: req.body.email,
+    },
+    process.env.JWT_KEY,
+    {
+      expiresIn: '3hr',
+    });
+    res.json({
+      status: 'success',
+      data: token,
+    });
+    next();
+  },
 };
-
 export default userService;
