@@ -49,6 +49,13 @@ const controlBoxes = (i = false, sen = false, dra = false) => {
 }
 controlBoxes(true, false, false);
 
+const displayMail = (i = 'none', sen = 'none', dra = 'none') => {
+	sectionInbox.style.display = i;
+	sectionSentMessages.style.display = sen;
+	sectionDraftMail.style.display = dra;
+}
+displayMail('grid', 'none', 'none');
+
 removeInboxMessage = () => {
 	sectionInbox.style.display = 'none';
 }
@@ -83,7 +90,7 @@ addWriteHeader = () => {
 	header.appendChild(sendButton);
 }
 //to enable sending message to people. 
-//The function creates a box in your main 
+//The function displays a box in your main 
 //where you can write mails, send it or save
 //it as draft
 composeBox = () => {
@@ -186,7 +193,7 @@ replyMail = () => {
 }
 Array.from(inboxMessage, message => {
 	message.addEventListener('click',() => {
-		if (openSideBar) {
+		if(openSideBar) {
 			removeInboxMessage();
 			removeInboxHeader();
 			addReadMailHeader();
@@ -238,21 +245,15 @@ closeAsideTab = () => {
 }
 const sentMail = () => {
 	controlBoxes(false, true, false);
-	sectionSentMessages.style.display = 'grid';
-	sectionInbox.style.display = 'none';
-	sectionDraftMail.style.display = 'none';
+	displayMail('none', 'grid', 'none');
 }
 const draft = () => {
 	controlBoxes(false, false, true);
-	sectionDraftMail.style.display = 'grid';
-	sectionInbox.style.display = 'none';
-	sectionSentMessages.style.display = 'none';
+	displayMail('none', 'none', 'grid');
 }
 const inboxMail = () => {
 	controlBoxes(true, false, false);
-	sectionSentMessages.style.display = 'none';
-	sectionInbox.style.display = 'grid';
-	sectionDraftMail.style.display = 'none';
+  displayMail('grid', 'none', 'none');
 }
 submitGroupName = (event) => {
 	event.preventDefault();
