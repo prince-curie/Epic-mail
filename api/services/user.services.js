@@ -25,6 +25,11 @@ const userService = {
     const newId = lastId + 1;
     // eslint-disable-next-line no-param-reassign
     req.body.id = newId;
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      // eslint-disable-next-line no-param-reassign
+      req.body.password = hash;
+      users.push(req.body);
+    });
     const token = jwt.sign({
       email: req.body.email,
     },
@@ -32,25 +37,10 @@ const userService = {
     {
       expiresIn: '3hr',
     });
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-      if (err) {
-        const error = err.json({
-          status: 'fail',
-          data: 'internal server error',
-        }).status(500);
-        return error;
-      }
-      if (hash) {
-      // eslint-disable-next-line no-param-reassign
-        req.body.password = hash;
-        users.push(req.body);
-      }
-    });
     res.json({
       status: 'success',
       data: token,
     });
-
     next();
   },
 };

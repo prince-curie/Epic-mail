@@ -6,7 +6,6 @@ import app from '../index';
 chai.should();
 chai.use(chaiHttp);
 
-
 describe('GET users', () => {
   it('it should get all users', (done) => {
     chai.request(app)
@@ -35,28 +34,13 @@ describe('GET users', () => {
 });
 
 const request = {
-  email: 'a@d.c',
+  email: 'an@d.c',
   firstName: 'e go',
   lastName: 'be',
   password: 'see baby',
 };
 
 describe('Create user', () => {
-  it('The request should return an error', (done) => {
-    chai.request(app)
-      .post('/api/v1/users/signup')
-      .send(request)
-      .end((err, res) => {
-        if (err) {
-          err.should.have.status(500);
-          err.body.should.be.a('object');
-          err.body.should.have.property('data');
-          err.body.data.should.be.a('string').equal('internal server error');
-          done(err);
-        }
-        done(err);
-      });
-  });
   it('The request should return an object', (done) => {
     chai.request(app)
       .post('/api/v1/users/signup')
@@ -64,8 +48,6 @@ describe('Create user', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.should.be.an('object');
-        res.body.should.have.property('data');
-        res.body.data.should.be.a('string');
         done(err);
       });
   });

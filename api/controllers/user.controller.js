@@ -10,6 +10,6 @@ export default {
     }).status(200);
   },
   signUp(err, req, res) {
-    return res.status(201);
-  }, 
+    return res;
+  },
 };
