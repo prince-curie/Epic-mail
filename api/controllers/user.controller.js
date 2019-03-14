@@ -9,7 +9,6 @@ const userController = {
       data: fetchAllUsersDB(),
     }).status(200);
   },
- ch-test-create-user-164533590
   signUp(err, req, res) {
     return res;
   },
