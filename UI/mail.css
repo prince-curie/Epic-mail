@@ -92,12 +92,12 @@
 .section__inbox > div {
   display: grid;
   grid-template-columns: 4fr 1fr;
-  border-top:solid 1px rgba(0,0,0,1);
   border-bottom:solid 1px rgba(0,0,0,1);
   padding: 0.3rem 0;
 }
 .section__inbox > div > .inbox-sender {
   font-weight: bold;
+  margin-bottom: .8rem;
 }
 .section__inbox > div > span {
   margin: 0 1rem;
@@ -159,7 +159,7 @@ label {
   padding: 0.3rem;
   border-radius: 5px;
   font-size: 1rem;
-  border: none;
+  border: solid 1px rgba(1, 57, 92, 1);
   outline: none;
 }
 .section__readmail > .reply-message > input, .section__readdraft > .draft-edit > input {
@@ -188,6 +188,7 @@ label {
 }
 .section__sentmessages > div > .sent-sender {
   font-weight: bold;
+  margin: .8rem;
 }
 .section__sentmessages > div > span {
   margin: 0 1rem;
@@ -206,6 +207,7 @@ label {
 }
 .section__draftmail > div > .draft-subject {
   font-weight: bold;
+  margin-bottom: .4rem;
 }
 .section__draftmail > div > span {
   margin: 0 1rem;

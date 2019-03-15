@@ -8,6 +8,8 @@
   display: grid;
   grid-template-columns: minmax(200px,);
   background-color: rgba(255, 255, 255, 1);
+  background: url(https://images.unsplash.com/photo-1526554850534-7c78330d5f90?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+  object-fit: contain;
 }
 .header__container {
   display: flex;
@@ -30,7 +32,12 @@
   min-height: 75vh;
   justify-items: center;
   display: grid;
-  align-items: center;
+  grid-template-rows: 1fr 8fr;
+}
+.main__container > div {
+  align-self: center;
+  font-size: 1.5rem;
+  margin: 1rem 0 0 0;
 }
 .form__container {
   display: grid;
@@ -38,6 +45,11 @@
   padding: 1rem;
   border-radius: 5px;
   font-size: 1rem;
+  align-self: center;
+}
+.form__container > span:first-child {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
 }
 .form__container > input {
   height: 1.5rem;
