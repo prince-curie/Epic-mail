@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model';
 import database from '../database/database';
+import userAuth from '../auth/user.auth';
 
 const { users } = database;
 // eslint-disable-next-line no-unused-vars
@@ -27,6 +28,11 @@ const userService = {
     const newId = lastId + 1;
     // eslint-disable-next-line no-param-reassign
     req.body.id = newId;
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      // eslint-disable-next-line no-param-reassign
+      req.body.password = hash;
+      users.push(req.body);
+    });
     const token = jwt.sign({
       email: req.body.email,
     },
@@ -34,25 +40,25 @@ const userService = {
     {
       expiresIn: '3hr',
     });
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-      if (err) {
-        const error = res.status(500).json({
-          status: 'fail',
-          data: 'internal server error',
-        });
-        next(error);
-      }
-      if (hash) {
-      // eslint-disable-next-line no-param-reassign
-        req.body.password = hash;
-        users.push(req.body);
-      }
-    });
-    return res.json({
+    res.json({
       status: 'success',
       data: token,
-    }).status(201);
+    });
+    next();
+  },
+  signInDB(req, res, next) {
+    const token = jwt.sign({
+      email: req.body.email,
+    },
+    process.env.JWT_KEY,
+    {
+      expiresIn: '3hr',
+    });
+    res.json({
+      status: 'success',
+      data: token,
+    });
+    next();
   },
 };
-
 export default userService;

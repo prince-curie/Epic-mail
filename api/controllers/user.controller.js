@@ -1,6 +1,6 @@
 import userServices from '../services/user.services';
 
-const { fetchAllUsersDB, addUserDB } = userServices;
+const { fetchAllUsersDB } = userServices;
 
 const userController = {
   fetchAllUser(req, res) {
@@ -9,13 +9,11 @@ const userController = {
       data: fetchAllUsersDB(),
     }).status(200);
   },
-  signUp(req, res) {
-    const newUser = req.body;
-    const createdUser = addUserDB(newUser);
-    return res.json({
-      status: 'success',
-      data: createdUser,
-    }).status(201);
+  signUp(err, req, res) {
+    return res;
+  },
+  signIn(req, res) {
+    return res;
   },
 };
 
