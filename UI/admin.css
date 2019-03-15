@@ -81,15 +81,16 @@
 }
 .aside__form {
   display: grid;
-  gap: 0rem;
+  gap: 0.6rem;
   box-sizing: border-box;
   padding: 0 1rem;
-  margin: 0;
+  margin: 1rem 0;
 }
 #aside__form-selectmembers {
   display: none;
   overflow-y: scroll;
   max-height: 90vh;
+  margin: 0.2rem 0;
   position: relative;
 }
 #aside__form-selectmembers > input[type = 'submit'] {
@@ -97,7 +98,7 @@
   bottom: 0;
   left: 5px;
   width: 240px;
-  margin: 0rem 0 .3rem 0;
+  margin: 0.5rem 0;
 }
 #aside__form-selectmembers > div {
   width: 100%;
@@ -142,12 +143,12 @@
 .section__inbox > div {
   display: grid;
   grid-template-columns: 4fr 1fr;
-  border-top:solid 1px rgba(0,0,0,1);
   border-bottom:solid 1px rgba(0,0,0,1);
   padding: .3rem 0;
 }
 .section__inbox > div > .inbox-sender {
   font-weight: bold;
+  margin-bottom: .8rem;
 }
 .section__inbox > div > span {
   margin: 0 1rem;
@@ -210,7 +211,7 @@ label {
   padding: 0.3rem;
   border-radius: 5px;
   font-size: 1rem;
-  border: none;
+  border: solid 1px rgba(1, 57, 92, 1);
   outline: none;
 }
 .section__readmail > .reply-message > input, .section__readdraft > .draft-edit > input {
@@ -233,12 +234,12 @@ label {
 .section__sentmessages > div {
   display: grid;
   grid-template-columns: 4fr 1fr 1fr;
-  border-top:solid 1px rgba(0,0,0,1);
   border-bottom:solid 1px rgba(0,0,0,1);
   padding: 0.3rem 0;
 }
 .section__sentmessages > div > .sent-sender {
   font-weight: bold;
+  margin-bottom: .8rem;
 }
 .section__sentmessages > div > span {
   margin: 0 1rem;
@@ -251,12 +252,12 @@ label {
 .section__draftmail > div {
   display: grid;
   grid-template-columns: 4fr 1fr;
-  border-top:solid 1px rgba(0,0,0,1);
   border-bottom:solid 1px rgba(0,0,0,1);
   padding: 0.6rem 0;
 }
 .section__draftmail > div > .draft-subject {
   font-weight: bold;
+  margin-bottom: .4rem;
 }
 .section__draftmail > div > span {
   margin: 0 1rem;
