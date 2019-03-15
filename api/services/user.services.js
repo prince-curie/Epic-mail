@@ -7,6 +7,7 @@ import database from '../database/database';
 const { users } = database;
 dotenv.config();
 
+
 const userService = {
   fetchAllUsersDB() {
     const allUsers = users.map((user) => {

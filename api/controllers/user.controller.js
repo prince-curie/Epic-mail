@@ -2,7 +2,7 @@ import userServices from '../services/user.services';
 
 const { fetchAllUsersDB, addUserDB, signInDB } = userServices;
 
-export default {
+const userController = {
   fetchAllUser(req, res) {
     return res.json({
       status: 'success',
@@ -22,3 +22,5 @@ export default {
     }).status(200);
   },
 };
+
+export default userController;
