@@ -15,10 +15,10 @@ const { addUserDB, signInDB } = userService;
 
 const router = Router();
 
-router.get('/', fetchAllUser);
+router.get('/users/', fetchAllUser);
 
-router.post('/signup', signUpAuth, addUserDB, signUp);
+router.post('/auth/signup', signUpAuth, signUp);
 
-router.post('/signin', signInAuth, signInDB, signIn);
+router.post('/auth/login', signInAuth, signIn /*, signInAuth*/);
 
 export default router;
