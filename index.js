@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.send({ data: 'Jehovah thank you' }));
 
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/', userRoutes);
 
 /* istanbul ignore next */
 const port = 3000 || process.env.PORT;
