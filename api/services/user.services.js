@@ -5,8 +5,7 @@ import User from '../models/user.model';
 import database from '../database/database';
 
 const { users } = database;
-// eslint-disable-next-line no-unused-vars
-const env = dotenv.config();
+dotenv.config();
 
 
 const userService = {
@@ -25,13 +24,13 @@ const userService = {
   addUserDB(req, res) {
     const lastId = users[users.length - 1].id;
     const newId = lastId + 1;
-    // eslint-disable-next-line no-param-reassign
-    req.body.id = newId;
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-      // eslint-disable-next-line no-param-reassign
-      req.body.password = hash;
-      users.push(req.body);
-    });
+    const user = new User();
+    user.id = newId;
+    user.email = req.body.email;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.password = bcrypt.hash(req.body.password, 10);
+    users.push(user);
     const token = jwt.sign({
       email: req.body.email,
     },
@@ -39,7 +38,7 @@ const userService = {
     {
       expiresIn: '3hr',
     });
-    return token;
+    return { token };
   },
   signInDB(req, res) {
     const token = jwt.sign({
@@ -49,7 +48,7 @@ const userService = {
     {
       expiresIn: '3hr',
     });
-    return token;
+    return { token };
   },
 };
 export default userService;

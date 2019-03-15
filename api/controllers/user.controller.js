@@ -11,13 +11,13 @@ const userController = {
   },
   signUp(req, res) {
     return res.json({
-      status: 'success',
+      status: 201,
       data: [addUserDB(req, res)],
     }).status(200);
   },
   signIn(req, res) {
     return res.json({
-      status: 'success',
+      status: 200,
       data: [signInDB(req, res)],
     }).status(200);
   },

@@ -35,12 +35,17 @@ describe('GET users', () => {
 });
 
 const request = {
-  email: 'an@d.c',
-  firstName: 'e go',
-  lastName: 'be',
-  password: 'see baby',
+  email: 'bah@g.com',
+  firstName: 'oya',
+  lastName: 'h itme',
+  password: 'a bc123',
 };
-
+const invalids = {
+  email: 'ba.com',
+  firstName: 'a',
+  lastName: 'h ',
+  password: 'ac123',
+};
 describe('Create user', () => {
   it('The request should return an object', (done) => {
     chai.request(app)
@@ -58,16 +63,15 @@ describe('Create user', () => {
       .send(request)
       .end((err, res) => {
         res.body.should.have.property('data');
-        res.body.data.should.be.an('array');
         done(err);
       });
   });
-  it('The request should return a array', (done) => {
+  it('The request should return ', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
-      .send(request)
+      .send(invalids)
       .end((err, res) => {
-        res.body.data.should.be.a('array');
+        res.should.have.status(401);
         done(err);
       });
   });

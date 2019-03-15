@@ -14,10 +14,10 @@ const userAuth = {
     const error = users.find(person => person.email === req.body.email);
 
     const Schema = {
-      email: Joi.string().required(),
-      firstName: Joi.string().required(),
-      lastName: Joi.string().required(),
-      password: Joi.string().required(),
+      email: Joi.string().trim().email().required(),
+      firstName: Joi.string().trim().min(2).required(),
+      lastName: Joi.string().trim().min(2).required(),
+      password: Joi.string().trim().min(6).required(),
     };
 
     const result = Joi.validate(req.body, Schema);
@@ -29,8 +29,8 @@ const userAuth = {
   },
   signInAuth(req, res, next) {
     const Schema = {
-      email: Joi.string().required(),
-      password: Joi.string().required(),
+      email: Joi.string().trim().email().required(),
+      password: Joi.string().trim().min(6).required(),
     };
     const result = Joi.validate(req.body, Schema);
     if (result.error) return authError(res, result.error.details[0].message);
