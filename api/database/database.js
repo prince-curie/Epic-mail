@@ -9,10 +9,10 @@ const database = {
     },
     {
       id: 2,
-      email: 'b@g.com',
+      email: 'ba@g.com',
       firstName: 'oya',
       lastName: 'hitme',
-      password: 'abc123',
+      password: 'a2b$10$.y08q/1.ulIQCF65rtrMO.t2EmaOLHJfSES3//6HZe8GzcZA6Yd1C',
     },
     {
       id: 3,

@@ -4,12 +4,10 @@ import database from '../database/database';
 
 const { users } = database;
 
-const authError = (res, reply) => {
-  return res.status(401).json({
-    status: 'fail',
-    data: reply,
-  });
-};
+const authError = (res, reply) => res.status(401).json({
+  status: 'fail',
+  data: reply,
+});
 
 const userAuth = {
   signUpAuth(req, res, next) {
@@ -24,14 +22,10 @@ const userAuth = {
 
     const result = Joi.validate(req.body, Schema);
 
-    if (result.error) {
-      authError(res, result.error.details[0].message);
-    }
-    if (error) {
-      authError(res, 'request not authorized');
-    }
+    if (result.error) authError(res, result.error.details[0].message);
+    if (error) authError(res, 'request not authorized');
 
-    next();
+    if (!error && !result.error) next();
   },
   signInAuth(req, res, next) {
     const Schema = {
@@ -39,17 +33,13 @@ const userAuth = {
       password: Joi.string().required(),
     };
     const result = Joi.validate(req.body, Schema);
-    if (result.error) authError(res, result.error.details[0].message);
+    if (result.error) return authError(res, result.error.details[0].message);
 
     const user = users.find(person => person.email === req.body.email);
 
-    if (!user) authError(res, 'request not authorized');
-    if (user) {
-      bcrypt.compare(req.body.password, user.password, (err, response) => {
-        if (err) authError(res, 'request not authorized');
-        if (response) next();
-      });
-    }
+    if (!user) return authError(res, 'request not authorized');
+    const passwordCompare = bcrypt.compare(req.body.password, user.password) 
+    if (passwordCompare) next();
   },
 };
 

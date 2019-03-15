@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "nyc --require babel-polyfill --require @babel/register _mocha test/*.test.js --exit",
+    "test": "nyc --require babel-polyfill --require @babel/register _mocha test/*.test.js --timeout 10000 --exit",
     "cover": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "coveralls": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov"
   },
