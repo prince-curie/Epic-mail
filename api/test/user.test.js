@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
-import database from '../api/database/database';
+import database from '../database/database';
 
 chai.should();
 chai.use(chaiHttp);

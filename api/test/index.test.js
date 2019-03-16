@@ -26,7 +26,7 @@ describe('Test server', () => {
     chai.request(app)
       .get('/')
       .end((err, res) => {
-        res.body.should.have.property('data').equal('Jehovah thank you');
+        res.body.should.have.property('data');
         done(err);
       });
   });
