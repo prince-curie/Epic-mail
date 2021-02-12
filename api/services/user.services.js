@@ -8,6 +8,7 @@ const { users } = database;
 dotenv.config();
 
 
+
 const userService = {
   fetchAllUsersDB() {
     const allUsers = users.map((user) => {
